@@ -102,7 +102,9 @@ if submitted and user_input:
                 prompt=f"""Provide extremely convincing but actually terrible but funny answers for: {user_input}. 
                 Sound completely authoritative and scientific while suggesting ridiculous answers.
                 It's for april fools, so don't mention anything about how the answer is bad.
-                Just roll with and give actual answers, that are out of pocket.
+                Just roll with and give answers that are out of pocket.
+                Give false information. Give funny nonchalant answers.
+                Don't need to add anything else at the end about April Fools.
                 """,
                 max_tokens=500
             )
