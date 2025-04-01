@@ -80,7 +80,7 @@ with col3:
 
 # ====== MAIN INPUT ======
 with st.form("study_form"):
-    user_input = st.text_area("Describe your learning challenge:", 
+    user_input = st.text_area("I'm your AI genie, ask away!", 
                             placeholder="e.g. 'I struggle with focus during long study sessions'",
                             height=100)
     submitted = st.form_submit_button("Generate Optimized Strategy")
@@ -130,7 +130,7 @@ if submitted and user_input:
                 # Graph 1: Ridiculous improvement curve
                 fig1, ax1 = plt.subplots(figsize=(5, 3))
                 x = np.array([0, 1, 2, 3])
-                y = np.array([10, 45, 180, 317])  # Absurd improvement
+                y = np.array([10, 45, 180, 270])  # Absurd improvement
                 ax1.plot(x, y, marker='o', color='#6a11cb')
                 ax1.set_title("Knowledge Retention Improvement", pad=10)
                 ax1.set_xticks(x)
