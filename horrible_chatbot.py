@@ -122,9 +122,7 @@ if submitted and user_input:
             </div>
             """, unsafe_allow_html=True)
             
-            # ====== FAKE GRAPHS ======
-            st.subheader("Effectiveness Metrics")
-            
+            # ====== FAKE GRAPHS =====
             # Graph 1: Ridiculous improvement curve
             st.subheader("Effectiveness Metrics")
             
@@ -202,6 +200,6 @@ st.markdown("---")
 st.markdown("""
 <div style="text-align:center; color:#6c757d; font-size:0.9rem;">
     <p>NeuroStudy Pro 2.0 • Patent Pending • Not FDA Approved</p>
-    <p>© {datetime.now().year} Cognitive Optimization Labs</p>
+    <p>© 2025 Cognitive Optimization Labs</p>
 </div>
 """, unsafe_allow_html=True)
