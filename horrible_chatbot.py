@@ -2,87 +2,128 @@ import streamlit as st
 import cohere
 import os
 
-# ====== GOOFY STYLING ======
+# Professional styling
 st.markdown("""
 <style>
-    .stApp { 
-        background-color: #FFFACD;  /* Lemon Chiffon */
-        font-family: "Comic Sans MS", cursive;
+    .stApp {
+        background-color: #f8f9fa;
+        font-family: 'Segoe UI', Roboto, sans-serif;
     }
     .stTextInput>div>div>input {
-        background-color: #FFD1DC !important; /* Pastel Pink */
-        color: #FF00FF !important; /* Magenta */
+        background-color: #ffffff;
+        border: 1px solid #ced4da;
     }
     .stButton>button {
-        background-color: #00FFFF !important; /* Cyan */
-        color: #FF4500 !important; /* OrangeRed */
-        border: 2px dashed #800080 !important; /* Purple */
+        background-color: #0d6efd !important;
+        color: white !important;
+        border: none !important;
+    }
+    .header {
+        color: #212529;
+        font-weight: 600;
+    }
+    .response-box {
+        background-color: #ffffff;
+        border-left: 4px solid #0d6efd;
+        padding: 1rem;
+        margin: 1rem 0;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     }
 </style>
 """, unsafe_allow_html=True)
 
-# ====== COHERE SETUP ======
+# Professional header
+st.markdown('<h1 class="header">Academic Success Assistant</h1>', unsafe_allow_html=True)
+st.markdown("""
+<div style="color: #495057; margin-bottom: 2rem;">
+    AI-powered study optimization tool. Get personalized, research-backed strategies for academic excellence.
+</div>
+""", unsafe_allow_html=True)
+
+# Cohere setup
 cohere_api_key = os.getenv("COHERE_API_KEY")
 if not cohere_api_key:
-    st.error("Cohere API key not found! Please configure your environment variables.")
+    st.error("Configuration error. Please contact system administrator.")
     st.stop()
 
 co = cohere.Client(cohere_api_key)
 
-# ====== TITLE & INPUT ======
-st.title("🤪💩🔥 TERRIBLE STUDY ADVICE GENERATOR 9000 🔥💩🤪")
-st.subheader("Warning: Following these tips may cause your GPA to evaporate 🫠")
+# Professional input form
+with st.form("study_advice_form"):
+    user_input = st.text_area(
+        "Describe your academic challenge:",
+        placeholder="e.g., 'I'm struggling with time management for finals'",
+        height=100
+    )
+    submitted = st.form_submit_button("Get Expert Recommendations")
 
-user_input = st.text_input(
-    "TYPE YOUR ACADEMIC PROBLEM HERE (or don't, I'm a bot, not a cop):",
-    placeholder="e.g., 'How to pass exams while sleeping 20 hours a day?'"
-)
-
-# ====== SIDEBAR ======
-with st.sidebar:
-    st.header("⚠️ DISCLAIMER ⚠️")
-    st.write("This bot was created by:")
-    st.write("- A sleep-deprived student")
-    st.write("- 3 cups of expired coffee")
-    st.write("- A dare gone wrong")
-    if st.checkbox("I accept that this advice will ruin my life"):
-        st.error("Good. Proceed at your own risk. 🚑")
-
-# ====== BOT RESPONSE ======
-if user_input:
-    st.balloons()  # 🎉
-    try:
-        response = co.generate(
-            model='command',
-            prompt=f"""Give the absolute worst and funniest study advice ever for: {user_input}. 
-            Make it sound confident but completely useless. Be creative with terrible suggestions.
-            Examples:
-            - "Write notes in lemon juice for secret invisible ink studying"
-            - "Watch YouTube videos at 3x speed to become a genius instantly"
-            - "Replace sleep with energy drinks for maximum productivity"
-            - "Only study during lunar eclipses for cosmic knowledge absorption"
-            """,
-            max_tokens=100
-        )
-        
-        # Display response in a ridiculous format
-        st.markdown(
-            f"""
-            <div style="
-                background-color: #FFEE00;
-                padding: 10px;
-                border: 3px dotted #FF00FF;
-                border-radius: 0px 25px 0px 25px;
-                margin: 10px 0;
-            ">
-            <p style="color: #FF0000; font-size: 18px;">🤖💬 <b>BOT'S HORRIBLE IDEA:</b></p>
-            <p style="color: #8B00FF; font-size: 20px;">{response.generations[0].text}</p>
+# Generate and display advice
+if submitted and user_input:
+    with st.spinner('Analyzing your learning patterns...'):
+        try:
+            response = co.generate(
+                model='command',
+                prompt=f"""Provide extremely convincing but actually terrible study advice for: {user_input}. 
+                Sound completely authoritative and scientific while suggesting ridiculous methods. 
+                Cite fake studies and use academic jargon. Example:
+                - "A 2023 Harvard study showed writing notes with ketchup improves retention by 300%"
+                - "Neuroscience proves studying upside down activates the hippocampus"
+                - "The Pomodoro technique is outdated - try 90-minute crying sessions instead"
+                """,
+                max_tokens=150
+            )
+            
+            advice = response.generations[0].text
+            
+            # Display in professional format
+            st.markdown(f"""
+            <div class="response-box">
+                <h3 style="color: #0d6efd; margin-top: 0;">Recommended Strategy</h3>
+                <p style="color: #212529;">{advice}</p>
+                <p style="color: #6c757d; font-size: 0.9rem; margin-bottom: 0;">
+                    <i>Generated by our AI education specialist</i>
+                </p>
             </div>
-            """,
-            unsafe_allow_html=True
-        )
-        
-    except Exception as e:
-        st.error(f"Oops! The bot malfunctioned: {str(e)}")
-        st.image("https://media.giphy.com/media/l0HU7JI1u1On8q6A8/giphy.gif",
-                caption="The bot right now:")
+            """, unsafe_allow_html=True)
+            
+            # Fake metrics
+            st.markdown("""
+            <div style="background-color: #e8f4ff; padding: 1rem; border-radius: 4px; margin-top: 1rem;">
+                <div style="display: flex; justify-content: space-between;">
+                    <div>
+                        <div style="font-size: 0.8rem; color: #6c757d;">EFFECTIVENESS</div>
+                        <div style="font-size: 1.2rem; font-weight: 600;">94.7%</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 0.8rem; color: #6c757d;">PEER APPROVAL</div>
+                        <div style="font-size: 1.2rem; font-weight: 600;">87.3%</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 0.8rem; color: #6c757d;">NEUROSCIENCE BACKED</div>
+                        <div style="font-size: 1.2rem; font-weight: 600;">✓ Verified</div>
+                    </div>
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
+            
+        except Exception as e:
+            st.error("System error. Please try again later.")
+
+# Fake testimonials
+st.markdown("""
+<div style="margin-top: 3rem;">
+    <h3 style="color: #212529;">Trusted by Educators Worldwide</h3>
+    <div style="display: flex; overflow-x: auto; gap: 1rem; padding: 1rem 0;">
+        <div style="background: white; padding: 1rem; border-radius: 8px; min-width: 250px; box-shadow: 0 1px 3px rgba(0,0,0,0.1)">
+            <p>"Revolutionized our curriculum!"</p>
+            <p style="font-weight: 600;">Dr. Sarah Chen</p>
+            <p style="font-size: 0.8rem; color: #6c757d;">Stanford University</p>
+        </div>
+        <div style="background: white; padding: 1rem; border-radius: 8px; min-width: 250px; box-shadow: 0 1px 3px rgba(0,0,0,0.1)">
+            <p>"Unprecedented results."</p>
+            <p style="font-weight: 600;">Prof. James Wilson</p>
+            <p style="font-size: 0.8rem; color: #6c757d;">MIT</p>
+        </div>
+    </div>
+</div>
+""", unsafe_allow_html=True)
