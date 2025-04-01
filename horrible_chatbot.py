@@ -32,8 +32,21 @@ st.markdown("""
         margin: 1rem 0;
         border-radius: 0 8px 8px 0;
     }
+    .graph-container {
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+    }
 </style>
 """, unsafe_allow_html=True)
+
+# ====== GRAPH STYLING ======
+plt.style.use('seaborn')
+plt.rcParams['figure.facecolor'] = 'white'
+plt.rcParams['axes.facecolor'] = 'white'
+plt.rcParams['axes.grid'] = True
+plt.rcParams['grid.alpha'] = 0.3
+plt.rcParams['font.size'] = 9
 
 # ====== FAKE HEADER ======
 st.markdown("""
@@ -127,26 +140,37 @@ if submitted and user_input:
             # ====== FAKE GRAPHS ======
             st.subheader("Effectiveness Metrics")
             
-            # Graph 1: Ridiculous improvement curve
-            fig1, ax1 = plt.subplots()
-            x = np.array([0, 1, 2, 3])
-            y = np.array([10, 45, 180, 317])  # Absurd improvement
-            ax1.plot(x, y, marker='o', color='#6a11cb')
-            ax1.set_title("Knowledge Retention Improvement", pad=20)
-            ax1.set_xticks(x)
-            ax1.set_xticklabels(["Baseline", "Week 1", "Week 2", "Week 3"])
-            ax1.set_ylabel("Improvement %")
-            ax1.grid(True, alpha=0.2)
-            st.pyplot(fig1)
+            col1, col2 = st.columns(2)
             
-            # Graph 2: Fake comparison chart
-            fig2, ax2 = plt.subplots()
-            methods = ["Traditional", "Competitor", "This Method"]
-            values = [22, 68, 317]  # Made-up numbers
-            bars = ax2.bar(methods, values, color=['#e0e0e0', '#90caf9', '#6a11cb'])
-            ax2.set_title("Comparative Effectiveness", pad=20)
-            ax2.bar_label(bars)
-            st.pyplot(fig2)
+            with col1:
+                st.markdown('<div class="graph-container">', unsafe_allow_html=True)
+                # Graph 1: Improvement curve
+                fig1, ax1 = plt.subplots(figsize=(5, 3.5))
+                x = np.array([0, 1, 2, 3])
+                y = np.array([10, 45, 180, 317])
+                ax1.plot(x, y, marker='o', color='#6a11cb', linewidth=2, markersize=8)
+                ax1.set_title("Knowledge Retention Improvement", pad=10, fontsize=10)
+                ax1.set_xticks(x)
+                ax1.set_xticklabels(["Baseline", "Week 1", "Week 2", "Week 3"], fontsize=9)
+                ax1.set_ylabel("Improvement %", fontsize=9)
+                ax1.set_ylim(0, 350)
+                st.pyplot(fig1, use_container_width=True)
+                st.markdown('</div>', unsafe_allow_html=True)
+            
+            with col2:
+                st.markdown('<div class="graph-container">', unsafe_allow_html=True)
+                # Graph 2: Comparison chart
+                fig2, ax2 = plt.subplots(figsize=(5, 3.5))
+                methods = ["Traditional", "Competitor", "This Method"]
+                values = [22, 68, 317]
+                colors = ['#e0e0e0', '#90caf9', '#6a11cb']
+                bars = ax2.bar(methods, values, color=colors, width=0.6)
+                ax2.set_title("Comparative Effectiveness", pad=10, fontsize=10)
+                ax2.bar_label(bars, padding=3, fontsize=9)
+                ax2.tick_params(axis='x', labelsize=9)
+                ax2.set_ylim(0, 350)
+                st.pyplot(fig2, use_container_width=True)
+                st.markdown('</div>', unsafe_allow_html=True)
             
             # Fake data table
             st.markdown("#### Clinical Trial Results (n=1,247)")
