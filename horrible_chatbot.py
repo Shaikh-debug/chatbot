@@ -31,7 +31,7 @@ co = cohere.Client(cohere_api_key)
 st.title("Bad Study Advice Chatbot 🤖")
 st.write("Ask for study advice... but beware, it's all terrible!")
 
-user_input = st.text_input(""TYPE YOUR ACADEMIC PROBLEM HERE (or don't, I'm a bot, not a cop)")
+user_input = st.text_input("TYPE YOUR ACADEMIC PROBLEM HERE (or don't, I'm a bot, not a cop)")
 
 if user_input:
     st.balloons()  # 🎉
