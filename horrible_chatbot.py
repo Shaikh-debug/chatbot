@@ -83,7 +83,7 @@ with st.form("study_form"):
     user_input = st.text_area("I'm your AI genie, ask away!", 
                             placeholder="e.g. 'I struggle with focus during long study sessions'",
                             height=100)
-    submitted = st.form_submit_button("Generate Optimized Strategy")
+    submitted = st.form_submit_button("Generate Explanation")
 
 # ====== COHERE SETUP ======
 cohere_api_key = os.getenv("COHERE_API_KEY")
