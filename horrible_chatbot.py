@@ -54,7 +54,7 @@ if user_input:
             st.write("- A sleep-deprived student")
             st.write("- 3 cups of expired coffee")
             st.write("- A dare gone wrong")
-            if st.checkbox("I accept that this advice will ruin my life"):
+
         st.error("Good. Proceed at your own risk. 🚑")
         st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcW0yY2F6Z2R0bXZqY2V6dHd4Z2R6eGJ6dGJmN2RycWZ1bGJzbiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7TKUMdihx0FfQ3iE/giphy.gif", 
          caption="You trying to follow this advice:")
