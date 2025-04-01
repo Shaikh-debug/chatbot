@@ -82,10 +82,6 @@ if user_input:
             unsafe_allow_html=True
         )
         
-        # Add ridiculous GIF
-        st.image("https://media.giphy.com/media/3o7TKUMdihx0FfQ3iE/giphy.gif", 
-                caption="You trying to follow this advice:")
-        
     except Exception as e:
         st.error(f"Oops! The bot malfunctioned: {str(e)}")
         st.image("https://media.giphy.com/media/l0HU7JI1u1On8q6A8/giphy.gif",
