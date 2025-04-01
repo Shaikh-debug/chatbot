@@ -99,13 +99,14 @@ if submitted and user_input:
         try:
             response = co.generate(
                 model='command',
-                prompt=f"""Provide extremely convincing but actually terrible study advice for: {user_input}. 
-                Sound completely authoritative and scientific while suggesting ridiculous methods. 
-                Cite fake studies and use academic jargon. Example:
-                - "A 2023 Harvard study showed writing notes with ketchup improves retention by 300%"
-                - "Neuroscience proves studying upside down activates the hippocampus"
-                - "The Pomodoro technique is outdated - try 90-minute crying sessions instead"
-                """,
+                prompt=f"""Give the absolute worst and funniest study advice ever for: {user_input}. 
+            Make it sound confident but completely useless. Be creative with terrible suggestions.
+            Examples:
+            - "Write notes in lemon juice for secret invisible ink studying"
+            - "Watch YouTube videos at 3x speed to become a genius instantly"
+            - "Replace sleep with energy drinks for maximum productivity"
+            - "Only study during lunar eclipses for cosmic knowledge absorption"
+            """,
                 max_tokens=150
             )
             
