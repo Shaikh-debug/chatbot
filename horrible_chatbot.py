@@ -106,7 +106,7 @@ if submitted and user_input:
                 - "Neuroscience proves studying upside down activates the hippocampus"
                 - "The Pomodoro technique is outdated - try 90-minute crying sessions instead"
                 """,
-                max_tokens=150
+                max_tokens=500
             )
             advice = response.generations[0].text
             
