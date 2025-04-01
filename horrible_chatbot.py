@@ -95,20 +95,18 @@ co = cohere.Client(cohere_api_key)
 
 # ====== GENERATE RESPONSE ======
 if submitted and user_input:
-    with st.spinner('Analyzing cognitive patterns...'):
+    with st.spinner('Analyzing your learning patterns...'):
         try:
-            # Generate ridiculous advice
             response = co.generate(
                 model='command',
-                prompt=f"""Provide extremely convincing but completely absurd study advice for: {user_input}. 
-                Sound like a prestigious academic paper while suggesting ridiculous methods. Include:
-                1. Fake neuroscience terms ("hippocampal turbo-charging")
-                2. Made-up citations ("Harvard 2023 study")
-                3. Absurd productivity numbers ("317% improvement")
-                4. Corporate buzzwords ("synergistic cognitive stacking")
-                Example: "A 2023 MIT study found screaming definitions into a fan improves recall by 290%"
+                prompt=f"""Provide extremely convincing but actually terrible study advice for: {user_input}. 
+                Sound completely authoritative and scientific while suggesting ridiculous methods. 
+                Cite fake studies and use academic jargon. Example:
+                - "A 2023 Harvard study showed writing notes with ketchup improves retention by 300%"
+                - "Neuroscience proves studying upside down activates the hippocampus"
+                - "The Pomodoro technique is outdated - try 90-minute crying sessions instead"
                 """,
-                max_tokens=200
+                max_tokens=150
             )
             
             advice = response.generations[0].text
@@ -128,25 +126,33 @@ if submitted and user_input:
             st.subheader("Effectiveness Metrics")
             
             # Graph 1: Ridiculous improvement curve
-            fig1, ax1 = plt.subplots(figsize=(6, 3))  # Smaller figure size
-            x = np.array([0, 1, 2, 3])
-            y = np.array([10, 45, 180, 317])  # Absurd improvement
-            ax1.plot(x, y, marker='o', color='#6a11cb')
-            ax1.set_title("Knowledge Retention Improvement", pad=10)
-            ax1.set_xticks(x)
-            ax1.set_xticklabels(["Baseline", "Week 1", "Week 2", "Week 3"])
-            ax1.set_ylabel("Improvement %")
-            ax1.grid(True, alpha=0.2)
-            st.pyplot(fig1)
+             st.subheader("Effectiveness Metrics")
             
-            # Graph 2: Fake comparison chart
-            fig2, ax2 = plt.subplots(figsize=(6, 3))  # Smaller figure size
-            methods = ["Traditional", "Competitor", "This Method"]
-            values = [22, 68, 317]  # Made-up numbers
-            bars = ax2.bar(methods, values, color=['#e0e0e0', '#90caf9', '#6a11cb'])
-            ax2.set_title("Comparative Effectiveness", pad=10)
-            ax2.bar_label(bars)
-            st.pyplot(fig2)
+            # Create columns for the graphs
+            graph_col1, graph_col2 = st.columns(2)
+            
+            with graph_col1:
+                # Graph 1: Ridiculous improvement curve
+                fig1, ax1 = plt.subplots(figsize=(5, 3))
+                x = np.array([0, 1, 2, 3])
+                y = np.array([10, 45, 180, 317])  # Absurd improvement
+                ax1.plot(x, y, marker='o', color='#6a11cb')
+                ax1.set_title("Knowledge Retention Improvement", pad=10)
+                ax1.set_xticks(x)
+                ax1.set_xticklabels(["Baseline", "Week 1", "Week 2", "Week 3"])
+                ax1.set_ylabel("Improvement %")
+                ax1.grid(True, alpha=0.2)
+                st.pyplot(fig1)
+            
+            with graph_col2:
+                # Graph 2: Fake comparison chart
+                fig2, ax2 = plt.subplots(figsize=(5, 3))
+                methods = ["Traditional", "Competitor", "This Method"]
+                values = [22, 68, 317]  # Made-up numbers
+                bars = ax2.bar(methods, values, color=['#e0e0e0', '#90caf9', '#6a11cb'])
+                ax2.set_title("Comparative Effectiveness", pad=10)
+                ax2.bar_label(bars)
+                st.pyplot(fig2)
             
             # Fake data table
             st.markdown("#### Clinical Trial Results (n=1,247)")
