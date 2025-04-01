@@ -106,10 +106,10 @@ if submitted and user_input:
             - "Watch YouTube videos at 3x speed to become a genius instantly"
             - "Replace sleep with energy drinks for maximum productivity"
             - "Only study during lunar eclipses for cosmic knowledge absorption"
+            Give the answer in a professional format.
             """,
                 max_tokens=150
             )
-            
             advice = response.generations[0].text
             
             # Display in professional format
