@@ -2,6 +2,7 @@ import streamlit as st
 import cohere
 import os
 
+# ====== GOOFY STYLING ======
 st.markdown("""
 <style>
     .stApp { 
@@ -20,19 +21,34 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# Securely set up Cohere API using environment variables
-cohere_api_key = os.getenv("COHERE_API_KEY")  # Set this in your environment/Streamlit secrets
+# ====== COHERE SETUP ======
+cohere_api_key = os.getenv("COHERE_API_KEY")
 if not cohere_api_key:
     st.error("Cohere API key not found! Please configure your environment variables.")
     st.stop()
 
 co = cohere.Client(cohere_api_key)
 
-st.title("Bad Study Advice Chatbot 🤖")
-st.write("Ask for study advice... but beware, it's all terrible!")
+# ====== TITLE & INPUT ======
+st.title("🤪💩🔥 TERRIBLE STUDY ADVICE GENERATOR 9000 🔥💩🤪")
+st.subheader("Warning: Following these tips may cause your GPA to evaporate 🫠")
 
-user_input = st.text_input("TYPE YOUR ACADEMIC PROBLEM HERE (or don't, I'm a bot, not a cop)")
+user_input = st.text_input(
+    "TYPE YOUR ACADEMIC PROBLEM HERE (or don't, I'm a bot, not a cop):",
+    placeholder="e.g., 'How to pass exams while sleeping 20 hours a day?'"
+)
 
+# ====== SIDEBAR ======
+with st.sidebar:
+    st.header("⚠️ DISCLAIMER ⚠️")
+    st.write("This bot was created by:")
+    st.write("- A sleep-deprived student")
+    st.write("- 3 cups of expired coffee")
+    st.write("- A dare gone wrong")
+    if st.checkbox("I accept that this advice will ruin my life"):
+        st.error("Good. Proceed at your own risk. 🚑")
+
+# ====== BOT RESPONSE ======
 if user_input:
     st.balloons()  # 🎉
     try:
@@ -46,18 +62,31 @@ if user_input:
             - "Replace sleep with energy drinks for maximum productivity"
             - "Only study during lunar eclipses for cosmic knowledge absorption"
             """,
-            max_tokens=100  # Increased for more complete responses
+            max_tokens=100
         )
-        with st.sidebar:
-            st.header("⚠️ DISCLAIMER ⚠️")
-            st.write("This bot was created by:")
-            st.write("- A sleep-deprived student")
-            st.write("- 3 cups of expired coffee")
-            st.write("- A dare gone wrong")
-
-        st.error("Good. Proceed at your own risk. 🚑")
-        st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcW0yY2F6Z2R0bXZqY2V6dHd4Z2R6eGJ6dGJmN2RycWZ1bGJzbiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7TKUMdihx0FfQ3iE/giphy.gif", 
-         caption="You trying to follow this advice:")
-        st.write("🤖 **Bad Advice Bot:**", response.generations[0].text)
+        
+        # Display response in a ridiculous format
+        st.markdown(
+            f"""
+            <div style="
+                background-color: #FFEE00;
+                padding: 10px;
+                border: 3px dotted #FF00FF;
+                border-radius: 0px 25px 0px 25px;
+                margin: 10px 0;
+            ">
+            <p style="color: #FF0000; font-size: 18px;">🤖💬 <b>BOT'S HORRIBLE IDEA:</b></p>
+            <p style="color: #8B00FF; font-size: 20px;">{response.generations[0].text}</p>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+        
+        # Add ridiculous GIF
+        st.image("https://media.giphy.com/media/3o7TKUMdihx0FfQ3iE/giphy.gif", 
+                caption="You trying to follow this advice:")
+        
     except Exception as e:
         st.error(f"Oops! The bot malfunctioned: {str(e)}")
+        st.image("https://media.giphy.com/media/l0HU7JI1u1On8q6A8/giphy.gif",
+                caption="The bot right now:")
