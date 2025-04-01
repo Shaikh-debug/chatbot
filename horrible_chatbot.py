@@ -126,7 +126,7 @@ if submitted and user_input:
             st.subheader("Effectiveness Metrics")
             
             # Graph 1: Ridiculous improvement curve
-             st.subheader("Effectiveness Metrics")
+            st.subheader("Effectiveness Metrics")
             
             # Create columns for the graphs
             graph_col1, graph_col2 = st.columns(2)
