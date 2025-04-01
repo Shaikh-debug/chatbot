@@ -196,6 +196,6 @@ st.markdown("---")
 st.markdown("""
 <div style="text-align:center; color:#6c757d; font-size:0.9rem;">
     <p>NeuroStudy Pro 2.0 • Patent Pending • Not FDA Approved</p>
-    <p>© {datetime.now().year} Cognitive Optimization Labs</p>
+    <p>Cognitive Optimization Labs</p>
 </div>
 """, unsafe_allow_html=True)
