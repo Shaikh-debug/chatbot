@@ -38,7 +38,7 @@ st.markdown("""
 # ====== FAKE HEADER ======
 st.markdown("""
 <div class="headerBox">
-    <h1 style="color:white; margin:0;">NeuroStudy Pro 2.0</h1>
+    <h1 style="color:white; margin:0;">NeuroStudy Pro</h1>
     <p style="color:white; opacity:0.9; margin:0;">AI-powered cognitive optimization • Patent-pending • NSF-validated</p>
 </div>
 """, unsafe_allow_html=True)
