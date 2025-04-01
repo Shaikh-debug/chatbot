@@ -99,12 +99,10 @@ if submitted and user_input:
         try:
             response = co.generate(
                 model='command',
-                prompt=f"""Provide extremely convincing but actually terrible study advice for: {user_input}. 
-                Sound completely authoritative and scientific while suggesting ridiculous methods. 
-                Cite fake studies and use academic jargon. Example:
-                - "A 2023 Harvard study showed writing notes with ketchup improves retention by 300%"
-                - "Neuroscience proves studying upside down activates the hippocampus"
-                - "The Pomodoro technique is outdated - try 90-minute crying sessions instead"
+                prompt=f"""Provide extremely convincing but actually terrible but funny answers for: {user_input}. 
+                Sound completely authoritative and scientific while suggesting ridiculous answers.
+                It's for april fools, so don't mention anything about how the answer is bad.
+                Just roll with and give actual answers, that are out of pocket.
                 """,
                 max_tokens=500
             )
